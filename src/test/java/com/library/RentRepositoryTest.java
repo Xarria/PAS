@@ -34,12 +34,19 @@ class RentRepositoryTest {
 
     @Test
     void remove() {
+        currentRentRepository.add(rent1);
+        currentRentRepository.add(rent2);
+        currentRentRepository.add(rent3);
         currentRentRepository.remove(rent1);
         Assert.assertEquals(2,currentRentRepository.getRentRepository().size());
     }
 
     @Test
     void getAllRenterRents() {
+        currentRentRepository.add(rent1);
+        currentRentRepository.add(rent2);
+        currentRentRepository.add(rent3);
+        currentRentRepository.remove(rent1);
         Assert.assertEquals(2,currentRentRepository.getAllRenterRents(renter).size());
     }
 }

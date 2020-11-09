@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RentManager {
+
     private RentRepository currentRents;
     private RentRepository archiveRents;
 
