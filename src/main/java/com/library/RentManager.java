@@ -1,4 +1,4 @@
-import jdk.vm.ci.meta.Local;
+package com.library;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class RentManager {
 
     public void displayArray(ArrayList<Rent> elements, RentRepository rents){
         for(Rent rent: rents.rentRepository){
-            rent.toString();
+            System.out.println(rent);
         }
     }
 

@@ -1,10 +1,12 @@
+package com.library;
+
 import java.util.ArrayList;
 
 public class RenterRepository {
     ArrayList<Renter> renters;
 
     public RenterRepository() {
-        this.renters = new ArrayList<Renter>();
+        this.renters = new ArrayList<>();
     }
 
     public void add(Renter renter){

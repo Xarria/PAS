@@ -1,3 +1,5 @@
+package com.library;
+
 public class RenterManager {
     RenterRepository currentRenters;
     RenterRepository archiveRenters;

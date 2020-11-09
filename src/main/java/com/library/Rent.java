@@ -1,3 +1,4 @@
+package com.library;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -42,9 +43,6 @@ public class Rent {
         }
         int duration = (int) Duration.between(startDate, endDate).toDays();
         int daysOver = duration - renter.getMaxRentDays();
-        if(daysOver <= 0) {
-            return 0;
-        }
-        return daysOver;
+        return Math.max(daysOver, 0);
     }
 }

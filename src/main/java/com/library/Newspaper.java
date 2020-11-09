@@ -1,3 +1,4 @@
+package com.library;
 
 public class Newspaper extends Elem {
 

@@ -1,0 +1,21 @@
+package com.library;
+
+
+import org.junit.Assert;
+import org.junit.Test;
+
+class BookTest {
+
+    @Test
+    public void testToString() {
+        Book book = new Book("Godfather", "thriller", "Mario Puzo", 480);
+        Place place = new Place("A", 1);
+        book.setPlace(place);
+        Assert.assertEquals("Godfather", book.getName());
+        Assert.assertEquals("thriller", book.getGenre());
+        Assert.assertEquals("Mario Puzo", book.getAuthor());
+        Assert.assertEquals(480, book.getPages());
+        Assert.assertEquals("\nKsiążka, tytuł: Godfather\ngatunek: thriller\nRegał: A, pozycja: 1\nautor: Mario Puzo" +
+                "\nliczba stron: 480", book.toString());
+    }
+}

@@ -1,3 +1,5 @@
+package com.library;
+
 public class Place {
     String rack;
     int position;

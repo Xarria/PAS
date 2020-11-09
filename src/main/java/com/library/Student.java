@@ -1,3 +1,5 @@
+package com.library;
+
 public class Student implements RenterType {
     @Override
     public int getMaxRentDuration() {

@@ -1,8 +1,10 @@
+package com.library;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Renter {
-    ArrayList<Rent> rents = new ArrayList<Rent>();
+    ArrayList<Rent> rents = new ArrayList<>();
     RenterType type;
     String name;
     String surname;
@@ -21,11 +23,11 @@ public class Renter {
     }
 
     public String getRents(){
-        String txt = "";
-        for(int i = 0; i < rents.size(); i++){
-            txt += rents.get(i).toString();
+        StringBuilder txt = new StringBuilder();
+        for (Rent rent : rents) {
+            txt.append(rent.toString());
         }
-        return txt;
+        return txt.toString();
     }
 
     public void setType(RenterType type) {
@@ -42,8 +44,8 @@ public class Renter {
 
     public double getPenalty(){
         int days = 0;
-        for(int i = 0; i < rents.size(); i++){
-            days += rents.get(i).getDaysOver();
+        for (Rent rent : rents) {
+            days += rent.getDaysOver();
         }
         return days * type.getDailyPenalty();
     }

@@ -1,10 +1,12 @@
+package com.library;
+
 import java.util.ArrayList;
 
 public class ElementRepository {
     ArrayList<Elem> elements;
 
     public ElementRepository() {
-        this.elements = new ArrayList<Elem>();
+        this.elements = new ArrayList<>();
     }
 
     public void add(Elem elem){
@@ -34,7 +36,7 @@ public class ElementRepository {
     }
 
     public ArrayList<Elem> getAllElementsFromGenre(String g){
-        ArrayList<Elem> fromGenre = new ArrayList<Elem>();
+        ArrayList<Elem> fromGenre = new ArrayList<>();
         for(Elem elem: elements){
             if(elem.genre.equals(g)){
                 fromGenre.add(elem);
@@ -44,7 +46,7 @@ public class ElementRepository {
     }
 
     public ArrayList<Book> findBooksByAuthor(String a){
-        ArrayList<Book> byAuthor = new ArrayList<Book>();
+        ArrayList<Book> byAuthor = new ArrayList<>();
         for(Elem elem: elements){
             if(elem.getClass().equals(Book.class)){
                 if(((Book) elem).author.equals(a)){
@@ -56,7 +58,7 @@ public class ElementRepository {
     }
 
     public ArrayList<Elem> findByTitle(String title){
-        ArrayList<Elem> byTitle = new ArrayList<Elem>();
+        ArrayList<Elem> byTitle = new ArrayList<>();
         for(Elem elem: elements){
             if(elem.name.equals(title)){
                 byTitle.add(elem);

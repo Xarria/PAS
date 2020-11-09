@@ -1,10 +1,12 @@
+package com.library;
+
 import java.util.ArrayList;
 
 public class RentRepository {
     ArrayList<Rent> rentRepository;
 
     public RentRepository() {
-        this.rentRepository = new ArrayList<Rent>();
+        this.rentRepository = new ArrayList<>();
     }
 
     public void add(Rent rent){
@@ -25,7 +27,7 @@ public class RentRepository {
     }
 
     public ArrayList<Rent> getAllRenterRents(Renter person){
-        ArrayList<Rent> renterRents = new ArrayList<Rent>();
+        ArrayList<Rent> renterRents = new ArrayList<>();
         for (Rent rent : rentRepository) {
             if (rent.renter == person) {
                 renterRents.add(rent);

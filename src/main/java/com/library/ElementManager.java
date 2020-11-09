@@ -1,3 +1,5 @@
+package com.library;
+
 import java.util.ArrayList;
 
 public class ElementManager {
@@ -33,7 +35,7 @@ public class ElementManager {
 
     public void displayArray(ArrayList<Elem> elements){
         for(Elem elem : elements){
-            elem.toString();
+            System.out.println(elem);
         }
     }
 }
