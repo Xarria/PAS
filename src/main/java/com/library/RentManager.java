@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RentManager {
-    RentRepository currentRents;
-    RentRepository archiveRents;
+    private RentRepository currentRents;
+    private RentRepository archiveRents;
 
     public RentManager(RentRepository currentRents, RentRepository archiveRents) {
         this.currentRents = currentRents;
@@ -23,7 +23,7 @@ public class RentManager {
     }
 
     public boolean isRented(Elem element){
-        for(Rent rent : currentRents.rentRepository){
+        for(Rent rent : currentRents.getRentRepository()){
             if(rent.getElement().equals(element)){
                 return true;
             }
@@ -32,7 +32,7 @@ public class RentManager {
     }
 
     public void endRent(Rent rent){
-        rent.endDate = LocalDate.now();
+        rent.setEndDate(LocalDate.now());
         currentRents.remove(rent);
         archiveRents.add(rent);
     }
@@ -40,14 +40,14 @@ public class RentManager {
     public void getAllRenterRents(Renter renter){
         System.out.println("Obecne wypożyczenia: ");
         ArrayList<Rent> current = currentRents.getAllRenterRents(renter);
-        displayArray(current, currentRents);
+        displayArray(current);
         System.out.println("Archiwalne wypożyczenia: ");
         ArrayList<Rent> archive = archiveRents.getAllRenterRents(renter);
-        displayArray(current, archiveRents);
+        displayArray(archive);
     }
 
-    public void displayArray(ArrayList<Rent> elements, RentRepository rents){
-        for(Rent rent: rents.rentRepository){
+    public void displayArray(ArrayList<Rent> elements){
+        for(Rent rent: elements){
             System.out.println(rent);
         }
     }

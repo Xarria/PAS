@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Renter {
-    ArrayList<Rent> rents = new ArrayList<>();
-    RenterType type;
-    String name;
-    String surname;
-    UUID id;
+    private ArrayList<Rent> rents = new ArrayList<>();
+    private RenterType type;
+    private String name;
+    private String surname;
+    private UUID id;
 
     public Renter(String name, String surname) {
         this.name = name;
@@ -40,6 +40,22 @@ public class Renter {
 
     public void addRent(Rent rent){
         rents.add(rent);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public RenterType getType() {
+        return type;
     }
 
     public double getPenalty(){

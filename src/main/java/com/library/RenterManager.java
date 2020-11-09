@@ -1,8 +1,8 @@
 package com.library;
 
 public class RenterManager {
-    RenterRepository currentRenters;
-    RenterRepository archiveRenters;
+    private RenterRepository currentRenters;
+    private RenterRepository archiveRenters;
 
     public RenterManager(RenterRepository currentRenters, RenterRepository archiveRenters) {
         this.currentRenters = currentRenters;
@@ -10,12 +10,12 @@ public class RenterManager {
     }
 
     public void addRenter(Renter renter){
-        currentRenters.renters.add(renter);
+        currentRenters.getRenters().add(renter);
     }
 
     public void removeRenter(Renter renter){
-        currentRenters.renters.remove(renter);
-        archiveRenters.renters.add(renter);
+        currentRenters.getRenters().remove(renter);
+        archiveRenters.getRenters().add(renter);
     }
 
     public void changeRenterType(RenterType type, Renter renter){

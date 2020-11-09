@@ -3,7 +3,7 @@ package com.library;
 import java.util.ArrayList;
 
 public class ElementManager {
-    ElementRepository elemRepo;
+    private ElementRepository elemRepo;
 
     public ElementManager(ElementRepository elemRepo) {
         this.elemRepo = elemRepo;

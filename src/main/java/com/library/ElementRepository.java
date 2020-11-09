@@ -3,7 +3,7 @@ package com.library;
 import java.util.ArrayList;
 
 public class ElementRepository {
-    ArrayList<Elem> elements;
+    private ArrayList<Elem> elements;
 
     public ElementRepository() {
         this.elements = new ArrayList<>();
@@ -28,7 +28,7 @@ public class ElementRepository {
 
     public boolean isPlaceFree(Place place){
         for(Elem elem: elements){
-            if(elem.place == place){
+            if(elem.getPlace() == place){
                 return false;
             }
         }
@@ -38,7 +38,7 @@ public class ElementRepository {
     public ArrayList<Elem> getAllElementsFromGenre(String g){
         ArrayList<Elem> fromGenre = new ArrayList<>();
         for(Elem elem: elements){
-            if(elem.genre.equals(g)){
+            if(elem.getGenre().equals(g)){
                 fromGenre.add(elem);
             }
         }
@@ -48,10 +48,8 @@ public class ElementRepository {
     public ArrayList<Book> findBooksByAuthor(String a){
         ArrayList<Book> byAuthor = new ArrayList<>();
         for(Elem elem: elements){
-            if(elem.getClass().equals(Book.class)){
-                if(((Book) elem).author.equals(a)){
-                    byAuthor.add((Book) elem);
-                }
+            if(elem.getClass().equals(Book.class) && ((Book) elem).getAuthor().equals(a)){
+                byAuthor.add((Book) elem);
             }
         }
         return byAuthor;
@@ -60,7 +58,7 @@ public class ElementRepository {
     public ArrayList<Elem> findByTitle(String title){
         ArrayList<Elem> byTitle = new ArrayList<>();
         for(Elem elem: elements){
-            if(elem.name.equals(title)){
+            if(elem.getName().equals(title)){
                 byTitle.add(elem);
             }
         }
@@ -68,6 +66,6 @@ public class ElementRepository {
     }
 
     public Place findElementPlace(Elem element){
-        return element.place;
+        return element.getPlace();
     }
 }

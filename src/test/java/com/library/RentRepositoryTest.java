@@ -29,13 +29,13 @@ class RentRepositoryTest {
         currentRentRepository.add(rent1);
         currentRentRepository.add(rent2);
         currentRentRepository.add(rent3);
-        Assert.assertEquals(3,currentRentRepository.rentRepository.size());
+        Assert.assertEquals(3,currentRentRepository.getRentRepository().size());
     }
 
     @Test
     void remove() {
         currentRentRepository.remove(rent1);
-        Assert.assertEquals(2,currentRentRepository.rentRepository.size());
+        Assert.assertEquals(2,currentRentRepository.getRentRepository().size());
     }
 
     @Test

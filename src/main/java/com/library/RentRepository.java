@@ -3,24 +3,28 @@ package com.library;
 import java.util.ArrayList;
 
 public class RentRepository {
-    ArrayList<Rent> rentRepository;
+    private ArrayList<Rent> repository;
+
+    public ArrayList<Rent> getRentRepository() {
+        return repository;
+    }
 
     public RentRepository() {
-        this.rentRepository = new ArrayList<>();
+        this.repository = new ArrayList<>();
     }
 
     public void add(Rent rent){
-        rentRepository.add(rent);
+        repository.add(rent);
     }
 
     public void remove(Rent rent){
-        rentRepository.remove(rent);
+        repository.remove(rent);
     }
 
     @Override
     public String toString(){
         StringBuilder txt = new StringBuilder();
-        for (Rent rent : rentRepository) {
+        for (Rent rent : repository) {
             txt.append(rent.toString());
         }
         return txt.toString();
@@ -28,8 +32,8 @@ public class RentRepository {
 
     public ArrayList<Rent> getAllRenterRents(Renter person){
         ArrayList<Rent> renterRents = new ArrayList<>();
-        for (Rent rent : rentRepository) {
-            if (rent.renter == person) {
+        for (Rent rent : repository) {
+            if (rent.getRenter() == person) {
                 renterRents.add(rent);
             }
         }
@@ -37,7 +41,7 @@ public class RentRepository {
     }
 
     public String getRent(Rent rent){
-        for (Rent value : rentRepository) {
+        for (Rent value : repository) {
             if (value.equals(rent)) {
                 return value.toString();
             }

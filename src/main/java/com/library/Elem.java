@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public class Elem {
 
-    String name;
-    String genre;
-    UUID id;
-    Place place;
+    private String name;
+    private String genre;
+    private UUID id;
+    private Place place;
 
     public Elem(String name, String genre) {
         this.name = name;
@@ -19,14 +19,17 @@ public class Elem {
         return name;
     }
 
-
     public String getGenre() {
         return genre;
     }
 
+    public Place getPlace() {
+        return place;
+    }
+
     @Override
     public String toString(){
-        return ", tytuł: " + name + "\ngatunek: " + genre + "\nRegał: " + place.rack + ", pozycja: " + place.position;
+        return ", tytuł: " + name + "\ngatunek: " + genre + "\nRegał: " + place.getRack() + ", pozycja: " + place.getPosition();
     }
 
     public void setPlace(Place newPlace) {

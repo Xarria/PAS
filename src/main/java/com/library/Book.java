@@ -1,8 +1,8 @@
 package com.library;
 
 public class Book extends Elem{
-    String author;
-    int pages;
+    private String author;
+    private int pages;
 
     public Book(String name, String genre, String author, int pages) {
         super(name, genre);

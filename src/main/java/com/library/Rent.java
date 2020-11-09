@@ -5,17 +5,25 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class Rent {
-    Elem element;
-    Renter renter;
-    UUID id;
-    LocalDate startDate;
-    LocalDate endDate;
+    private Elem element;
+    private Renter renter;
+    private UUID id;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public Rent(Elem element, Renter renter) {
         this.element = element;
         this.renter = renter;
         this.id = UUID.randomUUID();
         startDate = LocalDate.now();
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public void createRent(Elem element, Renter renter){
@@ -25,7 +33,7 @@ public class Rent {
 
     @Override
     public String toString(){
-        return "\nID: " + id + "\nImię: " + renter.name + "\nNazwisko: " + renter.surname + "\nTytuł: " + element.name +
+        return "\nID: " + id + "\nImię: " + renter.getName() + "\nNazwisko: " + renter.getSurname() + "\nTytuł: " + element.getName() +
                 "\nData rozpoczęcia: " + startDate + "\nData zakończenia: " + endDate;
     }
 
