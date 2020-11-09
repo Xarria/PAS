@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RentManager {
-
     private RentRepository currentRents;
     private RentRepository archiveRents;
 
@@ -13,32 +12,31 @@ public class RentManager {
         this.archiveRents = archiveRents;
     }
 
-    public void createRent(Renter renter, Elem element){
-        if(!isRented(element)){
+    public void createRent(Renter renter, Elem element) {
+        if (!isRented(element)) {
             Rent rent = new Rent(element, renter);
             currentRents.add(rent);
-        }
-        else{
+        } else {
             System.out.println("Element jest już wypożyczony");
         }
     }
 
-    public boolean isRented(Elem element){
-        for(Rent rent : currentRents.getRentRepository()){
-            if(rent.getElement().equals(element)){
+    public boolean isRented(Elem element) {
+        for (Rent rent : currentRents.getRentRepository()) {
+            if (rent.getElement().equals(element)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void endRent(Rent rent){
+    public void endRent(Rent rent) {
         rent.setEndDate(LocalDate.now());
         currentRents.remove(rent);
         archiveRents.add(rent);
     }
 
-    public void getAllRenterRents(Renter renter){
+    public void getAllRenterRents(Renter renter) {
         System.out.println("Obecne wypożyczenia: ");
         ArrayList<Rent> current = currentRents.getAllRenterRents(renter);
         displayArray(current);
@@ -47,10 +45,9 @@ public class RentManager {
         displayArray(archive);
     }
 
-    public void displayArray(ArrayList<Rent> elements){
-        for(Rent rent: elements){
+    public void displayArray(ArrayList<Rent> elements) {
+        for (Rent rent : elements) {
             System.out.println(rent);
         }
     }
-
 }
