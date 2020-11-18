@@ -15,7 +15,7 @@ public class ElementRepository {
     }
 
     public void remove(Elem elem){
-        elements.remove(elem);
+        elements.set(elements.indexOf(elem), null);
     }
 
     public Elem findElement(UUID id) {
@@ -85,5 +85,14 @@ public class ElementRepository {
 
     public Place findElementPlace(Elem element){
         return element.getPlace();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder txt = new StringBuilder();
+        for (Elem elem : elements) {
+            txt.append(elem.toString());
+        }
+        return txt.toString();
     }
 }

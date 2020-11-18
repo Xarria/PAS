@@ -25,11 +25,15 @@ public class UserManager {
         currentUsers.getUsers().add(user);
     }
 
-    public void removeRenter(User user){
-        currentUsers.getUsers().remove(user);
-    }
-
     public void changeRenterType(RenterType type, User user){
         user.setType(type);
+    }
+
+    public void activateOrDeactivateUser(User user, boolean active) {
+        currentUsers.activateOrDeactivateUser(user, active);
+    }
+
+    public String toString(User user) {
+        return currentUsers.toString(user);
     }
 }

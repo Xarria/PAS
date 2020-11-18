@@ -72,4 +72,8 @@ public class User {
     public String getLogin() {
         return login;
     }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

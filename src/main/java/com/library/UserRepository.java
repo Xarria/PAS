@@ -45,4 +45,14 @@ public class UserRepository {
         return users;
     }
 
+    public void activateOrDeactivateUser(User user, boolean active) {
+        user.setActive(active);
+    }
+
+    public String toString(User user) {
+        StringBuilder str = new StringBuilder();
+        str.append(user.toString());
+        str.append(user.getRents());
+        return str.toString();
+    }
 }

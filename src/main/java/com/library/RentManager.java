@@ -55,4 +55,12 @@ public class RentManager {
             System.out.println(rent);
         }
     }
+
+    public Rent getRentForElem(Elem elem) {
+        for (Rent rent : currentRents.getRentRepository()) {
+            if (rent.getElement() == elem)
+                return rent;
+        }
+        return null;
+    }
 }
