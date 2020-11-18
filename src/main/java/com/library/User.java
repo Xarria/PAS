@@ -10,6 +10,7 @@ public class User {
     private String surname;
     private String login;
     private UUID id;
+    private boolean active;
 
     public User(String name, String surname, String login) {
         this.name = name;
@@ -68,4 +69,7 @@ public class User {
         return days * type.getDailyPenalty();
     }
 
+    public String getLogin() {
+        return login;
+    }
 }

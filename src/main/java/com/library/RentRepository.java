@@ -1,6 +1,7 @@
 package com.library;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class RentRepository {
     private ArrayList<Rent> repository;
@@ -30,14 +31,23 @@ public class RentRepository {
         return txt.toString();
     }
 
-    public ArrayList<Rent> getAllRenterRents(Renter person){
-        ArrayList<Rent> renterRents = new ArrayList<>();
+    public Rent findRent(UUID id){
         for (Rent rent : repository) {
-            if (rent.getRenter() == person) {
-                renterRents.add(rent);
+            if (rent.getId() == id) {
+                return rent;
             }
         }
-        return renterRents;
+        return null;
+    }
+
+    public ArrayList<Rent> getAllUserRents(User person){
+        ArrayList<Rent> userRents = new ArrayList<>();
+        for (Rent rent : repository) {
+            if (rent.getUser() == person) {
+                userRents.add(rent);
+            }
+        }
+        return userRents;
     }
 
     public String getRent(Rent rent){

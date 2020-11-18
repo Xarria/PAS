@@ -2,6 +2,7 @@ package com.library;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class RentManager {
     private RentRepository currentRents;
@@ -12,9 +13,13 @@ public class RentManager {
         this.archiveRents = archiveRents;
     }
 
-    public void createRent(Renter renter, Elem element) {
+    public Rent findRent(UUID id){
+        return currentRents.findRent(id);
+    }
+
+    public void createRent(User user, Elem element) {
         if (!isRented(element)) {
-            Rent rent = new Rent(element, renter);
+            Rent rent = new Rent(element, user);
             currentRents.add(rent);
         } else {
             System.out.println("Element jest już wypożyczony");
@@ -36,12 +41,12 @@ public class RentManager {
         archiveRents.add(rent);
     }
 
-    public void getAllRenterRents(Renter renter) {
+    public void getAllUserRents(User user) {
         System.out.println("Obecne wypożyczenia: ");
-        ArrayList<Rent> current = currentRents.getAllRenterRents(renter);
+        ArrayList<Rent> current = currentRents.getAllUserRents(user);
         displayArray(current);
         System.out.println("Archiwalne wypożyczenia: ");
-        ArrayList<Rent> archive = archiveRents.getAllRenterRents(renter);
+        ArrayList<Rent> archive = archiveRents.getAllUserRents(user);
         displayArray(archive);
     }
 

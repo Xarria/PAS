@@ -1,6 +1,7 @@
 package com.library;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ElementRepository {
     private ArrayList<Elem> elements;
@@ -15,6 +16,23 @@ public class ElementRepository {
 
     public void remove(Elem elem){
         elements.remove(elem);
+    }
+
+    public Elem findElement(UUID id) {
+        for (Elem elem : elements) {
+            if (elem.getId() == id) {
+                return elem;
+            }
+        }
+        return null;
+    }
+
+    public void modifyElement(UUID id, Elem elem){
+        for(int i = 0; i < elements.size(); i++){
+            if (elements.get(i).getId() == id){
+                elements.set(i, elem);
+            }
+        }
     }
 
     public boolean isElementInRepository(Elem elem){

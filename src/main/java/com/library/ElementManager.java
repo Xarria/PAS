@@ -1,6 +1,7 @@
 package com.library;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ElementManager {
     private ElementRepository elemRepo;
@@ -15,6 +16,14 @@ public class ElementManager {
             return true;
         }
         return false;
+    }
+
+    public Elem findElement(UUID id){
+        return elemRepo.findElement(id);
+    }
+
+    public void modifyElement(UUID id, Elem elem){
+        elemRepo.modifyElement(id, elem);
     }
 
     public ArrayList<Elem> getAllFromGenre(String genre){

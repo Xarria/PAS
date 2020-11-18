@@ -6,14 +6,14 @@ import java.util.UUID;
 
 public class Rent {
     private Elem element;
-    private Renter renter;
+    private User user;
     private UUID id;
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Rent(Elem element, Renter renter) {
+    public Rent(Elem element, User user) {
         this.element = element;
-        this.renter = renter;
+        this.user = user;
         this.id = UUID.randomUUID();
         startDate = LocalDate.now();
     }
@@ -26,14 +26,14 @@ public class Rent {
         this.endDate = endDate;
     }
 
-    public void createRent(Elem element, Renter renter){
-        Rent rent = new Rent(element, renter);
-        renter.addRent(rent);
+    public void createRent(Elem element, User user){
+        Rent rent = new Rent(element, user);
+        user.addRent(rent);
     }
 
     @Override
     public String toString(){
-        return "\nID: " + id + "\nImię: " + renter.getName() + "\nNazwisko: " + renter.getSurname() + "\nTytuł: " + element.getName() +
+        return "\nID: " + id + ", login: " + user.getLogin() + "\nImię: " + user.getName() + "\nNazwisko: " + user.getSurname() + "\nTytuł: " + element.getName() +
                 "\nData rozpoczęcia: " + startDate + "\nData zakończenia: " + endDate;
     }
 
@@ -41,8 +41,8 @@ public class Rent {
         return element;
     }
 
-    public Renter getRenter() {
-        return renter;
+    public User getUser() {
+        return user;
     }
 
     public int getDaysOver(){
@@ -50,7 +50,11 @@ public class Rent {
             return 0;
         }
         int duration = (int) Duration.between(startDate, endDate).toDays();
-        int daysOver = duration - renter.getMaxRentDays();
+        int daysOver = duration - user.getMaxRentDays();
         return Math.max(daysOver, 0);
+    }
+
+    public UUID getId() {
+        return id;
     }
 }

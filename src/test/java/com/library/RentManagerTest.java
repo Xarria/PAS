@@ -9,7 +9,7 @@ class RentManagerTest {
     private RentRepository currentRentRepository;
     private RentRepository archiveRentRepository;
     private RentManager rentManager;
-    private Renter renter;
+    private User user;
     private Elem element;
     private Rent rent;
 
@@ -18,14 +18,14 @@ class RentManagerTest {
         currentRentRepository = new RentRepository();
         archiveRentRepository = new RentRepository();
         rentManager = new RentManager(currentRentRepository, archiveRentRepository);
-        renter = new Renter("Zofia", "Wlodarczyk");
+        user = new Renter("Zofia", "Wlodarczyk", "ZofiaW");
         element = new Book("Przygody", "dramat", "Andersen", 87);
-        rent = new Rent(element, renter);
+        rent = new Rent(element, user);
     }
 
     @Test
     void isRented() {
-        rentManager.createRent(renter, element);
+        rentManager.createRent(user, element);
         Assert.assertTrue(rentManager.isRented(element));
     }
 
