@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserRepository implements UserRepoInterface {
-    private ArrayList<User> users;
+    private final ArrayList<User> users;
 
     public UserRepository() {
         this.users = new ArrayList<>();
@@ -64,8 +64,7 @@ public class UserRepository implements UserRepoInterface {
     }
 
     public String toString(User user, RentRepoInterface rentRepo) {
-        return user.toString() +
-                getAllRentsForUser(user, rentRepo);
+        return user.toString() + getAllRentsForUser(user, rentRepo);
     }
 
     public String getAllRentsForUser(User user, RentRepoInterface rentRepo){

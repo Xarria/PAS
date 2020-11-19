@@ -1,0 +1,7 @@
+//Book(String name, String genre, String author, int pages)
+//Newspaper(String name, String genre)
+//Renter(String name, String surname, String login)
+
+book===BookTitle===BookGenre===BookAuthor===2115
+newspaper===NewspaperTitle===NewspaperGenre
+renter===RenterName===RenterSurname===RenterLogin

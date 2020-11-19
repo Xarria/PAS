@@ -18,8 +18,8 @@ public class ElementRepository implements ElemRepoInterface {
                 System.out.println("Istnieje już element o danym id");
                 return;
             }
-            elements.add(elem);
         }
+        elements.add(elem);
     }
 //usunięcie Zasobu powinno wiązać się z ustawieniem pustej referencji jako wartości odpowiedniego atrybutu związanych z usuwanym obiektem alokacji
     public void remove(Elem elem){
