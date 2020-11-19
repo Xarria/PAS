@@ -1,6 +1,8 @@
 package com.library;
 
 
+import com.library.Data.Book;
+import com.library.Data.Place;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 

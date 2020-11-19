@@ -1,4 +1,4 @@
-package com.library;
+package com.library.Data;
 
 public class Student implements RenterType {
     @Override

@@ -1,4 +1,4 @@
-package com.library;
+package com.library.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,11 +64,9 @@ public class UserRepository implements UserRepoInterface {
     }
 
     public String toString(User user, RentRepoInterface rentRepo) {
-        StringBuilder str = new StringBuilder();
-        str.append(user.toString());
-        str.append(user.getRents());
-        str.append(getAllRentsForUser(user, rentRepo));
-        return str.toString();
+        return user.toString() +
+                user.getRents() +
+                getAllRentsForUser(user, rentRepo);
     }
 
     public String getAllRentsForUser(User user, RentRepoInterface rentRepo){

@@ -1,4 +1,9 @@
-package com.library;
+package com.library.Logic;
+
+import com.library.Data.Elem;
+import com.library.Data.Rent;
+import com.library.Data.RentRepoInterface;
+import com.library.Data.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

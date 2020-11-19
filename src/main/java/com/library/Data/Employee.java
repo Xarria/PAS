@@ -1,6 +1,6 @@
-package com.library;
+package com.library.Data;
 
-public class Employee implements RenterType{
+public class Employee implements RenterType {
 
     @Override
     public int getMaxRentDuration() {

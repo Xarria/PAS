@@ -1,4 +1,6 @@
-package com.library;
+package com.library.Logic;
+
+import com.library.Data.*;
 
 import java.util.ArrayList;
 import java.util.List;

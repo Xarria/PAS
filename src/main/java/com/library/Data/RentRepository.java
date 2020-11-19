@@ -1,4 +1,4 @@
-package com.library;
+package com.library.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class RentRepository implements RentRepoInterface {
-    private ArrayList<Rent> repository;
+    private final ArrayList<Rent> repository;
 
     public ArrayList<Rent> getRentRepository() {
         return repository;
@@ -16,15 +16,14 @@ public class RentRepository implements RentRepoInterface {
         this.repository = new ArrayList<>();
     }
 
-    public void add(Object rentObject) {
-        Rent rent = (Rent) rentObject;
+    public void add(Rent rent) {
         for (Rent r : repository) {
             if (r.getId() == rent.getId()) {
                 System.out.println("Istnieje już wypożyczenie o danym id");
                 return;
             }
-            repository.add(rent);
         }
+        repository.add(rent);
     }
 // zakończenie alokacji polega na ustawieniu atrybutu czasu zakończenia alokacji
     public void endRent(Rent rent){
@@ -38,7 +37,7 @@ public class RentRepository implements RentRepoInterface {
     }
 //usuwanie alokacji dotyczy tylko alokacji nie zakończonych
     public void remove(Rent rent){
-        if(rent.getEndDate() != null){
+        if(rent.getEndDate() == null){
             repository.remove(rent);
         }
         else {

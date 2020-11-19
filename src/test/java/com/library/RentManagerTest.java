@@ -1,13 +1,16 @@
 package com.library;
 
+import com.library.Data.*;
+import com.library.Logic.RentManager;
+import com.library.Logic.UserManager;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 class RentManagerTest {
 
-    private RentRepository currentRentRepository;
-    private RentRepository archiveRentRepository;
     private RentManager rentManager;
     private User user;
     private Elem element;
@@ -15,17 +18,19 @@ class RentManagerTest {
 
     @BeforeEach
     void setUp() {
-        currentRentRepository = new RentRepository();
-        archiveRentRepository = new RentRepository();
+        RentRepository currentRentRepository = new RentRepository();
+        RentRepository archiveRentRepository = new RentRepository();
         rentManager = new RentManager(currentRentRepository, archiveRentRepository);
         user = new Renter("Zofia", "Wlodarczyk", "ZofiaW");
+        UserManager userManager = new UserManager(new UserRepository());
+        userManager.activateOrDeactivateUser(user, true);
         element = new Book("Przygody", "dramat", "Andersen", 87);
         rent = new Rent(element, user);
     }
 
     @Test
     void isRented() {
-        rentManager.createRent(user, element);
+        rentManager.createRent(user, element, LocalDate.now());
         Assert.assertTrue(rentManager.isRented(element));
     }
 

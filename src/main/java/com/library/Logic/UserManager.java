@@ -1,4 +1,9 @@
-package com.library;
+package com.library.Logic;
+
+import com.library.Data.RentRepoInterface;
+import com.library.Data.RenterType;
+import com.library.Data.User;
+import com.library.Data.UserRepoInterface;
 
 import java.util.List;
 import java.util.UUID;
