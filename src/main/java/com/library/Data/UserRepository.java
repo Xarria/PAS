@@ -65,7 +65,6 @@ public class UserRepository implements UserRepoInterface {
 
     public String toString(User user, RentRepoInterface rentRepo) {
         return user.toString() +
-                user.getRents() +
                 getAllRentsForUser(user, rentRepo);
     }
 
