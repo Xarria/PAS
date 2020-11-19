@@ -2,52 +2,50 @@ package com.library;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class RentManager {
-    private RentRepository currentRents;
-    private RentRepository archiveRents;
+    private RentRepoInterface currentRents;
 
-    public RentManager(RentRepository currentRents, RentRepository archiveRents) {
+    public RentManager(RentRepoInterface currentRents, RentRepoInterface archiveRents) {
         this.currentRents = currentRents;
-        this.archiveRents = archiveRents;
     }
 
+//    wyszukiwanie obiektów według wartości klucza
     public Rent findRent(UUID id){
         return currentRents.findRent(id);
     }
 
-    public void createRent(User user, Elem element) {
-        if (!isRented(element)) {
+//utworzenie alokacji
+//utworzenie alokacji jest obwarowane co najmniej aktywnością Klienta oraz dostępnością (brakiem nie zakończonych alokacji) Zasobu
+//czas rozpoczęcia tworzonej alokacji może być ustawiany jako przyszły
+    public void createRent(User user, Elem element, LocalDate startTime) {
+        if (!isRented(element) && user.getActive()) {
             Rent rent = new Rent(element, user);
+            rent.setStartDate(startTime);
+            user.addRent(rent);
             currentRents.add(rent);
         } else {
-            System.out.println("Element jest już wypożyczony");
+            System.out.println("Element jest już wypożyczony lub użytkownik nie jest aktywny");
         }
     }
 
     public boolean isRented(Elem element) {
-        for (Rent rent : currentRents.getRentRepository()) {
-            if (rent.getElement().equals(element)) {
+        for(Rent rent : currentRents.getRents()){
+            if(rent.getElement()==element){
                 return true;
             }
         }
         return false;
     }
-
+// zakończenie alokacji
     public void endRent(Rent rent) {
-        rent.setEndDate(LocalDate.now());
-        currentRents.remove(rent);
-        archiveRents.add(rent);
+        currentRents.endRent(rent);
     }
-
-    public void getAllUserRents(User user) {
-        System.out.println("Obecne wypożyczenia: ");
-        ArrayList<Rent> current = currentRents.getAllUserRents(user);
-        displayArray(current);
-        System.out.println("Archiwalne wypożyczenia: ");
-        ArrayList<Rent> archive = archiveRents.getAllUserRents(user);
-        displayArray(archive);
+// usuwanie alokacji
+    public void removeRent(Rent rent){
+        currentRents.remove(rent);
     }
 
     public void displayArray(ArrayList<Rent> elements) {
@@ -55,12 +53,17 @@ public class RentManager {
             System.out.println(rent);
         }
     }
+// lista alokacji z możliwością filtrowania co najmniej według wartości kluczy Klientów i Zasobów
+    public List<Rent> getRents(){
+        return currentRents.getRents();
+    }
 
-    public Rent getRentForElem(Elem elem) {
-        for (Rent rent : currentRents.getRentRepository()) {
-            if (rent.getElement() == elem)
-                return rent;
-        }
-        return null;
+    public ArrayList<Rent> getAllUserRents(UUID id) {
+        System.out.println("Obecne wypożyczenia: ");
+        return currentRents.getAllUserRents(id);
+    }
+
+    public Rent getRentForElement(UUID id){
+        return currentRents.getRentForElement(id);
     }
 }

@@ -1,23 +1,32 @@
 package com.library;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-public class ElementRepository {
+public class ElementRepository implements ElemRepoInterface {
     private ArrayList<Elem> elements;
 
     public ElementRepository() {
         this.elements = new ArrayList<>();
     }
 
-    public void add(Elem elem){
-        elements.add(elem);
+    public void add(Object element) {
+        Elem elem = (Elem) element;
+        for (Elem e : elements) {
+            if (e.getId() == elem.getId()) {
+                System.out.println("Istnieje już element o danym id");
+                return;
+            }
+            elements.add(elem);
+        }
     }
-
+//usunięcie Zasobu powinno wiązać się z ustawieniem pustej referencji jako wartości odpowiedniego atrybutu związanych z usuwanym obiektem alokacji
     public void remove(Elem elem){
         elements.set(elements.indexOf(elem), null);
     }
 
+//listy Użytkowników oraz Zasobów powinny udostępniać możliwość filtrowania co najmniej według wartości klucza
     public Elem findElement(UUID id) {
         for (Elem elem : elements) {
             if (elem.getId() == id) {
@@ -87,12 +96,24 @@ public class ElementRepository {
         return element.getPlace();
     }
 
-    @Override
-    public String toString() {
+    public String toString(Elem element, RentRepoInterface rentRepo) {
         StringBuilder txt = new StringBuilder();
         for (Elem elem : elements) {
             txt.append(elem.toString());
         }
+        txt.append(getRentForElement(element, rentRepo));
         return txt.toString();
     }
+
+    public String getRentForElement(Elem elem, RentRepoInterface rentRepo){
+        if(rentRepo.getRentForElement(elem.getId()) != null ){
+            return rentRepo.getRentForElement(elem.getId()).toString();
+        }
+        return "Element niewypożyczony";
+    }
+
+    public List<Elem> getElements(){
+        return elements;
+    }
+
 }

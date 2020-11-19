@@ -26,11 +26,6 @@ public class Rent {
         this.endDate = endDate;
     }
 
-    public void createRent(Elem element, User user){
-        Rent rent = new Rent(element, user);
-        user.addRent(rent);
-    }
-
     @Override
     public String toString(){
         return "\nID: " + id + ", login: " + user.getLogin() + "\nImię: " + user.getName() + "\nNazwisko: " + user.getSurname() + "\nTytuł: " + element.getName() +
@@ -56,5 +51,9 @@ public class Rent {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setStartDate(LocalDate date){
+        this.startDate = date;
     }
 }

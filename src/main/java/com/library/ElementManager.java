@@ -1,12 +1,13 @@
 package com.library;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ElementManager {
-    private ElementRepository elemRepo;
+    private ElemRepoInterface elemRepo;
 
-    public ElementManager(ElementRepository elemRepo) {
+    public ElementManager(ElemRepoInterface elemRepo) {
         this.elemRepo = elemRepo;
     }
 
@@ -17,13 +18,37 @@ public class ElementManager {
         }
         return false;
     }
-
+//wyszukiwanie obiektów według wartości klucza
     public Elem findElement(UUID id){
         return elemRepo.findElement(id);
     }
-
+//zestaw operacji CRUD (tworzenie, odczyt (lista), modyfikacja, usuwanie) dla hierarchii Zasobów
     public void modifyElement(UUID id, Elem elem){
         elemRepo.modifyElement(id, elem);
+    }
+
+    public Book createBook(String name, String genre, String author, int pages){
+        return new Book(name, genre, author, pages);
+    }
+
+    public Newspaper createNewspaper(String name, String genre){
+        return new Newspaper(name, genre);
+    }
+
+    public List<Elem> getElements(){
+        return elemRepo.getElements();
+    }
+
+    public void add(Elem elem){
+        elemRepo.add(elem);
+    }
+
+    public void remove(Elem elem){
+        elemRepo.remove(elem);
+    }
+// wyświetlenie szczegółów wraz z listą alokacji
+    public String toString(Elem element, RentRepoInterface rentRepo){
+        return elemRepo.toString(element, rentRepo);
     }
 
     public ArrayList<Elem> getAllFromGenre(String genre){
