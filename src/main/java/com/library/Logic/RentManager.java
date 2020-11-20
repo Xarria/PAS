@@ -11,20 +11,20 @@ import java.util.List;
 import java.util.UUID;
 
 public class RentManager {
-    private RentRepoInterface currentRents;
+    private final RentRepoInterface currentRents;
 
     public RentManager(RentRepoInterface currentRents, RentRepoInterface archiveRents) {
         this.currentRents = currentRents;
     }
 
-//    wyszukiwanie obiektów według wartości klucza
-    public Rent findRent(UUID id){
+    //    wyszukiwanie obiektów według wartości klucza
+    public Rent findRent(UUID id) {
         return currentRents.findRent(id);
     }
 
-//utworzenie alokacji
-//utworzenie alokacji jest obwarowane co najmniej aktywnością Klienta oraz dostępnością (brakiem nie zakończonych alokacji) Zasobu
-//czas rozpoczęcia tworzonej alokacji może być ustawiany jako przyszły
+    //utworzenie alokacji
+    //utworzenie alokacji jest obwarowane co najmniej aktywnością Klienta oraz dostępnością (brakiem nie zakończonych alokacji) Zasobu
+    //czas rozpoczęcia tworzonej alokacji może być ustawiany jako przyszły
     public void createRent(User user, Elem element, LocalDate startTime) {
         if (!isRented(element) && user.getActive()) {
             Rent rent = new Rent(element, user);
@@ -37,19 +37,21 @@ public class RentManager {
     }
 
     public boolean isRented(Elem element) {
-        for(Rent rent : currentRents.getRents()){
-            if(rent.getElement()==element){
+        for (Rent rent : currentRents.getRents()) {
+            if (rent.getElement() == element) {
                 return true;
             }
         }
         return false;
     }
-// zakończenie alokacji
+
+    // zakończenie alokacji
     public void endRent(Rent rent) {
         currentRents.endRent(rent);
     }
-// usuwanie alokacji
-    public void removeRent(Rent rent){
+
+    // usuwanie alokacji
+    public void removeRent(Rent rent) {
         currentRents.remove(rent);
     }
 
@@ -58,8 +60,9 @@ public class RentManager {
             System.out.println(rent);
         }
     }
-// lista alokacji z możliwością filtrowania co najmniej według wartości kluczy Klientów i Zasobów
-    public List<Rent> getRents(){
+
+    // lista alokacji z możliwością filtrowania co najmniej według wartości kluczy Klientów i Zasobów
+    public List<Rent> getRents() {
         return currentRents.getRents();
     }
 
@@ -68,7 +71,7 @@ public class RentManager {
         return currentRents.getAllUserRents(id);
     }
 
-    public Rent getRentForElement(UUID id){
+    public Rent getRentForElement(UUID id) {
         return currentRents.getRentForElement(id);
     }
 }

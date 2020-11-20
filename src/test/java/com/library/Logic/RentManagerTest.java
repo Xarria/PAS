@@ -1,8 +1,6 @@
-package com.library;
+package com.library.Logic;
 
 import com.library.Data.*;
-import com.library.Logic.RentManager;
-import com.library.Logic.UserManager;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
